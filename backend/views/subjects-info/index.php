@@ -25,14 +25,42 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-            'subjects_id',
-            'plan_id',
-            'part_cycle_id',
-            'semestr',
-             'status',
-            // 'lecture_time:datetime',
-            // 'labs_time:datetime',
-            // 'practical_time:datetime',
+            //'subjects_id',
+            [
+                'label'=>'Дисциплина',
+                
+                'content'=>function($data)
+                {
+                    if ($data->plan->id == $data->plan_id)
+                    return $data->subjects->name_subject;
+                } ,
+                'contentOptions'=>['style'=>'max-width: 150px; white-space: pre-wrap; '],
+            ],
+            [
+                'label'=>'Учебный план',
+                
+                'content'=>function($data)
+                {
+                    if ($data->plan->id == $data->plan_id)
+                    return $data->plan->plan_number;
+                    
+                } ,
+                'contentOptions'=>['style'=>'max-width: 150px; white-space: pre-wrap; '],
+            ],
+            //'plan_id',
+            //'part_cycle_id',
+            [
+                'label' => 'Семестр',
+                'attribute' => 'semestr',            
+            ],
+            [
+                'label' => 'Дисциплина по выбору',
+                'attribute' => 'status',
+            ],            
+            
+            // 'lecture_time',
+            // 'labs_time',
+            // 'practical_time',
             // 'exam',
             // 'credit',
             // 'differentiated_credit',

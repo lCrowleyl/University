@@ -71,20 +71,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 } ,
                 'contentOptions'=>['style'=>'max-width: 150px; white-space: pre-wrap; '],
             ],
-            [
-                'label'=>'Цикл',
-                'content'=>function($data){
-                    if (!$data->partCycle->id_part == NULL)
-                    return $data->partCycle->name_part . '. '
-                            . $data->partCycle->name_cycle . '. '
-                            . $data->partCycle->name_subcycle;
-                    if ($data->partCycle->id_part  == NULL)
-                    return $data->partCycle->name_cycle . '. '
-                            . $data->partCycle->name_subcycle;
-                    
-                },
-                'contentOptions'=>['style'=>'max-width: 150px; white-space: pre-wrap; '],
-            ],
+//            [
+//                'label'=>'Цикл',
+//                'content'=>function($data){
+//                    if (!$data->partCycle->id_part == NULL)
+//                    return $data->partCycle->name_part . '. '
+//                            . $data->partCycle->name_cycle . '. '
+//                            . $data->partCycle->name_subcycle;
+//                    if ($data->partCycle->id_part  == NULL)
+//                    return $data->partCycle->name_cycle . '. '
+//                            . $data->partCycle->name_subcycle;
+//                    
+//                },
+//                'contentOptions'=>['style'=>'max-width: 150px; white-space: pre-wrap; '],
+//            ],
             [
                 'label'=>'Семестр №',
                 'attribute' => 'semestr'

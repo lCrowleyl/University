@@ -19,6 +19,7 @@ class Yp3SubjectsSearch extends Yp3Subjects
     {
         return [
             [['id', 'subjects_info_id', 'yp3_id', 'flows_id', 'count_week', 'semestr'], 'integer'],
+            [['date'], 'safe'],
         ];
     }
 
@@ -64,6 +65,7 @@ class Yp3SubjectsSearch extends Yp3Subjects
             'flows_id' => $this->flows_id,
             'count_week' => $this->count_week,
             'semestr' => $this->semestr,
+            'date' => $this->date,
         ]);
 
         return $dataProvider;

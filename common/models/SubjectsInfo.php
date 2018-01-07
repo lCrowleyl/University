@@ -39,10 +39,10 @@ class SubjectsInfo extends \yii\db\ActiveRecord
         'practical_time' => 'прак.',
         'exam' => 'экзамен',
         'credit' => 'зачет',
-        'differentiated_credit' => 'диф. за- чет',
+        'differentiated_credit' => 'диф. за-чет',
         'cource_work' =>'курсовая работа',
         'cource_project' => 'курсовой проект',
-        'individual_assignment' =>'индивидуальн ые задания',
+        'individual_assignment' =>'индивидуальные задания',
         'summ_time' => 'всего (часы)',
         
         

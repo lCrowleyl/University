@@ -18,8 +18,7 @@ class Yp3Search extends Yp3
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['date'], 'safe'],
+            [['id', 'date'], 'integer'],
         ];
     }
 

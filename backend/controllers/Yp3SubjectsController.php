@@ -8,6 +8,9 @@ use common\models\Yp3SubjectsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Plan;
+use common\models\Yp3;
+use common\models\SubjectsInfo;
 
 /**
  * Yp3SubjectsController implements the CRUD actions for Yp3Subjects model.
@@ -54,6 +57,29 @@ class Yp3SubjectsController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+    
+    public function actionAdd()
+    {
+        $year = 2017;
+        var_dump($year);
+        $plan  = Plan::find()
+                ->where(['year'=>$year])
+                ->all();
+//        var_dump($plan);
+        foreach ($plan as $plans)
+        {
+            $planId = $plans->id;
+            //var_dump($plans);
+            $subj = SubjectsInfo::find()
+                    ->where(['plan_id' => $planId])
+                    ->all();
+            var_dump($planId);
+            var_dump($subj);
+        }
+//        $planId[] = $plan->id;
+//        var_dump($planId);
+            
     }
 
     /**

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Yp3Subjects */
 
-$this->title = 'Create Yp3 Subjects';
-$this->params['breadcrumbs'][] = ['label' => 'Yp3 Subjects', 'url' => ['index']];
+$this->title = Yii::t('app', 'Create Yp3 Subjects');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Yp3 Subjects'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yp3-subjects-create">

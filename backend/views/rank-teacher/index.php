@@ -25,7 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'rank_name',
+            [
+                'label'=> 'Должность',
+                'attribute' => 'rank_name',
+            ],
+//            'rank_name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

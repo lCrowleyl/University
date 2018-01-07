@@ -101,6 +101,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                 'contentOptions'=>['style'=>'max-width: 20px; white-space: pre-wrap; '],
             ],
+            [
+            'label'=>'Кафедра АСУ',
+            'value' => $model->subjects->is_self,
+                
+                'contentOptions'=>['style'=>'max-width: 20px; white-space: pre-wrap; '],
+            ],
+            [
+            'label'=>'Фаультет',
+            'value' => $model->subjects->faculty,
+                
+                'contentOptions'=>['style'=>'max-width: 20px; white-space: pre-wrap; '],
+            ],
             
         ],
     ]) ?>

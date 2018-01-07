@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\Yp3Search */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Yp3s';
+$this->title = Yii::t('app', 'Yp3s');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yp3-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Yp3', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Yp3'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

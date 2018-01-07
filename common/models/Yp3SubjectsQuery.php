@@ -3,9 +3,9 @@
 namespace common\models;
 
 /**
- * This is the ActiveQuery class for [[Yp3Subjects]].
+ * This is the ActiveQuery class for [[Yp3]].
  *
- * @see Yp3Subjects
+ * @see Yp3
  */
 class Yp3SubjectsQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +16,7 @@ class Yp3SubjectsQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Yp3Subjects[]|array
+     * @return Yp3[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class Yp3SubjectsQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return Yp3Subjects|array|null
+     * @return Yp3|array|null
      */
     public function one($db = null)
     {

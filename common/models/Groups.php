@@ -31,7 +31,7 @@ class Groups extends \yii\db\ActiveRecord
     {
         return [
             [['flows_id'], 'integer'],
-            [['name_group'], 'string', 'max' => 5],
+            [['name_group'], 'string', 'max' => 16],
             [['flows_id'], 'exist', 'skipOnError' => true, 'targetClass' => Flows::className(), 'targetAttribute' => ['flows_id' => 'id']],
         ];
     }

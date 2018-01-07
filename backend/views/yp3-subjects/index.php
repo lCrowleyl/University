@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\Yp3SubjectsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Yp3 Subjects';
+$this->title = Yii::t('app', 'Yp3 Subjects');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yp3-subjects-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Yp3 Subjects', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Yp3 Subjects'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'flows_id',
             'count_week',
             // 'semestr',
+            // 'date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

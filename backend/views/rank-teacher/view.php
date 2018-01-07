@@ -29,6 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+//            [
+//                'label'=> 'Форма обучения',
+//                'value' => $model->rank_name,
+//            ],
             'rank_name',
         ],
     ]) ?>

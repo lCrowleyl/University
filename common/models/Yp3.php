@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "yp3".
  *
  * @property integer $id
- * @property string $date
+ * @property integer $date
  *
  * @property Yp3Subjects[] $yp3Subjects
  */
@@ -28,7 +28,7 @@ class Yp3 extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date'], 'safe'],
+            [['date'], 'integer'],
         ];
     }
 
@@ -53,10 +53,10 @@ class Yp3 extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return Yp3Query the active query used by this AR class.
+     * @return Yp3SubjectsQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new Yp3Query(get_called_class());
+        return new Yp3SubjectsQuery(get_called_class());
     }
 }
