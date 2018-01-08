@@ -77,4 +77,35 @@ class Teachers extends \yii\db\ActiveRecord
     {
         return new TeachersQuery(get_called_class());
     }
+    
+       /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getNagruzka()
+    {
+        return $this->hasMany(Yp4Subjects::className(), ['teachers_id' => 'id']);
+    }
+    
+    public function getCountAll()
+    {
+        $total = 0;
+        foreach ($this->nagruzka as $item) {
+             $curTotal= $item->lections + $item->pract + $item->labs + $item->nirs + 
+                     $item->kontz_zao + $item->kons + $item->ekzam_kons + 
+                     $item->kontr + $item->kyrs + $item->zach + $item->eczam + 
+                     $item->practic + $item->recen + $item->dr;
+             $total +=$curTotal;
+        }
+        return $total;
+    }
+    
+    public static function getTotal()
+    {
+        $total = 0;
+        $teachers = Teachers::find()->all();
+        foreach ($teachers as $teacher) {
+            $total +=$teacher->getCountAll();
+        }
+        return $total;
+    }
 }

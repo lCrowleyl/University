@@ -18,14 +18,16 @@ use Yii;
  * @property SubjectsInfo $subjectsInfo
  * @property Yp3 $yp3
  */
-class Yp3Subjects extends \yii\db\ActiveRecord
+class Yp4Subjects extends \yii\db\ActiveRecord
 {
+    public $count;
+    public $teachers_ids;
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'yp3_subjects';
+        return 'yp4_subjects';
     }
 
     /**
@@ -35,6 +37,7 @@ class Yp3Subjects extends \yii\db\ActiveRecord
     {
         return [
             [['subjects_info_id', 'yp3_id', 'flows_id', 'count_week'], 'required'],
+            [['count', 'teachers_ids'], 'safe'],
             [['subjects_info_id', 'yp3_id', 'flows_id', 'count_week', 'semestr'], 'integer'],
             [['flows_id'], 'exist', 'skipOnError' => true, 'targetClass' => Flows::className(), 'targetAttribute' => ['flows_id' => 'id']],
             [['subjects_info_id'], 'exist', 'skipOnError' => true, 'targetClass' => SubjectsInfo::className(), 'targetAttribute' => ['subjects_info_id' => 'id']],
@@ -76,8 +79,29 @@ class Yp3Subjects extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getYp3()
+    public function getYpSubjects()
     {
-        return $this->hasOne(Yp3::className(), ['id' => 'yp3_id']);
+        return $this->hasOne(Yp3Subjects::className(), ['id' => 'yp_subjects_id']);
     }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTeachers()
+    {
+        return $this->hasOne(Teachers::className(), ['id' => 'teachers_id']);
+    }
+    
+    public static function getTotal($attribute, $ypId, $tId, $semestr) 
+    {
+        $total = 0;
+        $items = Yp4Subjects::find()
+            ->leftJoin('yp3_subjects', 'yp3_subjects.id=yp4_subjects.yp_subjects_id') 
+            ->leftJoin('yp3', 'yp3_subjects.yp3_id=yp3.id')->where(['yp3_subjects.yp3_id' => $ypId, 'yp3_subjects.semestr' => $semestr])->andWhere(['teachers_id' => $tId])->all();
+        foreach ($items as $item) {
+            $total += $item->$attribute;
+        }
+        return $total;
+    }
+
 }

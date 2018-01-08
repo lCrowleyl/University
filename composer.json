@@ -18,7 +18,9 @@
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "arogachev/yii2-excel": "*"
+        "arogachev/yii2-excel": "*",
+        "2amigos/yii2-multi-select-widget" : "*",
+        "kartik-v/yii2-export": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

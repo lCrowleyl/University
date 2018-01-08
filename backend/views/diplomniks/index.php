@@ -4,39 +4,30 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\TeachersSearch */
+/* @var $searchModel common\models\DiplomniksSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Teachers';
+$this->title = 'Diplomniks';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="teachers-index">
+<div class="diplomniks-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Teachers', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Diplomniks', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'showFooter'=>TRUE,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'rank_teacher_id',
-            'first_name',
-            'last_name',
-            'patronymic',
-            [
-                'format' => 'raw',
-                  'content'=>function($data){
-                    return $data->getCountAll();
-                },
-                 'footer' => common\models\Teachers::getTotal()
-            ], 
+            'teachers_id',
+            'flow_id',
+            'count',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
