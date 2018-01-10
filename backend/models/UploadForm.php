@@ -199,22 +199,22 @@ class UploadForm extends Model {
      * 
      * @return  string              Information about head
      */
-    public function getHead($dataR) {
-        if (stristr($dataR[0], self::FACULTYNAME)) {
+    public function getHead($dataR, $condition) {
+        if ($condition == self::FACULTYNAME && stristr($dataR[0], self::FACULTYNAME)) {
             $facultyRow = explode(" ", $dataR['1']);
             $training = $this->changeFaculty($facultyRow);
             return $training;
         }
-        if (stristr($dataR[0], self::SPESIALITY)) {
+        if ($condition == self::SPESIALITY && stristr($dataR[0], self::SPESIALITY)) {
             $spesialityRow = explode(" ", $dataR['1']);
             unset($spesialityRow[0]);
             $nameSpesiality = implode(" ", $spesialityRow);
             return $nameSpesiality;
         }
-        if (stristr($dataR[0], self::NAMEPLAN)) {
+        if ($condition == self::NAMEPLAN && stristr($dataR[0], self::NAMEPLAN)) {
             return $dataR['1'];
         }
-        if (stristr($dataR[0], self::DIRECTION)) {
+        if ($condition == self::DIRECTION && stristr($dataR[0], self::DIRECTION)) {
             $directionRow = explode(" ", $dataR['1']);
             $cypherDir = $directionRow[0];
             return $cypherDir;
@@ -338,25 +338,28 @@ class UploadForm extends Model {
             $dataRow = array_filter($dataRows);
             if ($key < self::HEADT) {
                 $dataR = array_values($dataRow);
-                $numberPlan = $this->getHead($dataR) ?: (isset($numberPlan) ? $numberPlan : false);
-                $level = $this->getYearPlan($dataR) ?: (isset($level) ? $level : false);
+                $level = $this->getLevel($dataR) ?: (isset($level) ? $level : false);
                 $yearPlan = $this->getYearPlan($dataR) ?: (isset($yearPlan) ? $yearPlan : false);
-                $training = $this->getHead($dataR) ?: (isset($training) ? $training : false);
+                $training = $this->getHead($dataR, self::FACULTYNAME) ?: (isset($training) ? $training : false);
+                $numberPlan = $this->getHead($dataR, self::NAMEPLAN) ?: (isset($numberPlan) ? $numberPlan : false);
+                $cypherDir = $this->getHead($dataR, self::DIRECTION) ?: (isset($cypherDir) ? $cypherDir : false);
+                $nameSpesiality = $this->getHead($dataR, self::SPESIALITY) ?: (isset($nameSpesiality) ? $nameSpesiality : false);
                 $dirPlan = $this->getDirPlan($dataR) ?: (isset($dirPlan) ? $dirPlan : false);
-                $cypherDir = $this->getHead($dataR) ?: (isset($cypherDir) ? $cypherDir : false);
-                $nameSpesiality = $this->getHead($dataR) ?: (isset($nameSpesiality) ? $nameSpesiality : false);
             }
         }
         $directionId = $this->addDirection($cypherDir, $dirPlan);
         $spesialityId = $this->addSpeciality($nameSpesiality, $directionId);
         $planId = $this->addPlan($numberPlan, $level, $yearPlan, $training, $spesialityId);
-        if ($key > self::HEADT) {
-            $semestr = $this->getNumSem($dataRows) ?: (isset($semestr) ? $semestr : false);
-            $partCycle = $this->getPartCycle($dataRows) ?: (isset($partCycle) ? $partCycle : false);
-            if (is_numeric($dataRows['A'])) {
-                $this->addSubjectPlan($dataRows, $semestr, $planId, $partCycle);
+        foreach ($headData as $key => $dataRows) {
+            if ($key > self::HEADT) {
+                $semestr = $this->getNumSem($dataRows) ?: (isset($semestr) ? $semestr : false);
+                $partCycle = $this->getPartCycle($dataRows) ?: (isset($partCycle) ? $partCycle : false);
+                if (is_numeric($dataRows['A'])) {
+                    $this->addSubjectPlan($dataRows, $semestr, $planId, $partCycle);
+                }
             }
         }
 //        exit();
     }
+
 }
